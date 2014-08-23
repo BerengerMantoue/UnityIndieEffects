@@ -8,7 +8,7 @@ http://1337atr.weebly.com
 */
 import IndieEffects;
 @script RequireComponent (IndieEffects)
-@script AddComponentMenu ("Indie Effects/Color Balance")
+@script AddComponentMenu ("Indie Effects/JS/Color Balance")
 var fxRes : IndieEffects;
 
 private var mat : Material;

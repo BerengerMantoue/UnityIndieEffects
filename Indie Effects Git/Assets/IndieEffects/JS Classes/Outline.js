@@ -2,7 +2,7 @@
 import IndieEffects;
 
 @script RequireComponent (IndieEffects)
-@script AddComponentMenu ("Indie Effects/Outline")
+@script AddComponentMenu ("Indie Effects/JS/Outline")
 
 var fxRes : IndieEffects;
 

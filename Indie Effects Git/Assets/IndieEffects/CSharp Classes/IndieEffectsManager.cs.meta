@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 68f61237890533049835a3a3f3b4753a
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - RT: {instanceID: 0}
+  - DepthShader: {fileID: 4800000, guid: cfb59da35ed8b044c9c2373bf41c3752, type: 3}
+  - DNBuffer: {instanceID: 0}
+  - DepthCam: {instanceID: 0}
+  - myCamera: {instanceID: 0}
+  - dom: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

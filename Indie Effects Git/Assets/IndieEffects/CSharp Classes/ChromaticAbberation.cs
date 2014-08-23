@@ -1,22 +1,15 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(IndieEffects))]
-[AddComponentMenu("Indie Effects/Chromatic Abberation C#")]
-public class ChromaticAbberation : MonoBehaviour
+[AddComponentMenu("Indie Effects/C#/Chromatic Abberation")]
+public class ChromaticAbberation : IndieEffect
 {
-    public IndieEffects fxRes;
-    public Shader shader;
-    private Material chromMat;
+    [Tooltip("TODO : Tooltip")]
     public Texture2D vignette;
 
-    public void Start () {
-	    fxRes = GetComponent<IndieEffects>();
-	    chromMat = new Material(shader);
-    }
+    protected override void OnPostRender ()
+    {
+	    effectMat.SetTexture("_Vignette", vignette);
 
-    public void OnPostRender () {
-	    chromMat.SetTexture("_MainTex", fxRes.RT);
-	    chromMat.SetTexture("_Vignette", vignette);
-	    IndieEffects.FullScreenQuad(chromMat);
+        base.OnPostRender();
     }
 }

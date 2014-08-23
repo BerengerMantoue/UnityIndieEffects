@@ -5,6 +5,8 @@ Project("{209D0DF9-31BF-36E0-7AF3-44B621738D31}") = "Indie Effects Git", "Assemb
 EndProject
 Project("{209D0DF9-31BF-36E0-7AF3-44B621738D31}") = "Indie Effects Git", "Assembly-CSharp-vs.csproj", "{78175B34-AC6C-C362-3B4F-1C2C5A456381}"
 EndProject
+Project("{209D0DF9-31BF-36E0-7AF3-44B621738D31}") = "Indie Effects Git", "Assembly-CSharp-Editor-vs.csproj", "{44020BD9-E642-35F9-4800-F1097DFFB11E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,15 @@ Global
 		{78175B34-AC6C-C362-3B4F-1C2C5A456381}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78175B34-AC6C-C362-3B4F-1C2C5A456381}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78175B34-AC6C-C362-3B4F-1C2C5A456381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44020BD9-E642-35F9-4800-F1097DFFB11E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44020BD9-E642-35F9-4800-F1097DFFB11E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44020BD9-E642-35F9-4800-F1097DFFB11E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44020BD9-E642-35F9-4800-F1097DFFB11E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-			GlobalSection(MonoDevelopProperties) = preSolution
+								GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

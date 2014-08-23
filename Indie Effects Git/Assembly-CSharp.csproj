@@ -54,7 +54,9 @@
      <Compile Include="Assets\IndieEffects\CSharp Classes\ColorBalance.cs" />
      <Compile Include="Assets\IndieEffects\CSharp Classes\DepthOfField.cs" />
      <Compile Include="Assets\IndieEffects\CSharp Classes\FisheyeEffect.cs" />
-     <Compile Include="Assets\IndieEffects\CSharp Classes\IndieEffects.cs" />
+     <Compile Include="Assets\IndieEffects\CSharp Classes\IndieEffect.cs" />
+     <Compile Include="Assets\IndieEffects\CSharp Classes\IndieEffectTools.cs" />
+     <Compile Include="Assets\IndieEffects\CSharp Classes\IndieEffectsManager.cs" />
      <Compile Include="Assets\IndieEffects\CSharp Classes\MotionblurModern\ObjectBlur.cs" />
      <Compile Include="Assets\IndieEffects\CSharp Classes\MotionblurModern\motionBlurModern.cs" />
      <Compile Include="Assets\IndieEffects\CSharp Classes\Negative.cs" />
@@ -86,7 +88,9 @@
      <None Include="Assets\IndieEffects\ShaderDir\DNBased\Bunell Disk SSAO.shader" />
      <None Include="Assets\IndieEffects\ShaderDir\DNBased\DOFShader.shader" />
      <None Include="Assets\IndieEffects\ShaderDir\Normal\IndieRadialBlur.shader" />
+     <None Include="Assets\Editor\Doxygen\Resources\BaseDoxyfile.txt" />
      <None Include="Assets\IndieEffects\ShaderDir\Normal\RadialBlurVF.shader" />
+     <None Include="Assets\Editor\Doxygen\ReadMe.txt" />
      <None Include="Assets\IndieEffects\AA Shaders\DLAA.shader" />
      <None Include="Assets\IndieEffects\AA Shaders\NFAA.shader" />
      <None Include="Assets\IndieEffects\ShaderDir\Normal\ImageBloom.shader" />

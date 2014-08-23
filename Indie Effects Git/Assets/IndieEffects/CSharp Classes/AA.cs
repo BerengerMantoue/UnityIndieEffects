@@ -6,12 +6,9 @@
 This is an adaption of Unity Pro's AA Script, done by TheBlur (me)
 
 */
-[RequireComponent(typeof(IndieEffects))]
-[AddComponentMenu("Indie Effects/Anti-Aliasing C#")]
-public class AA : MonoBehaviour
+[AddComponentMenu("Indie Effects/C#/Anti-Aliasing")]
+public class AA : IndieEffect
 {
-    public IndieEffects fxRes;
-
     public enum AAMode {
 	    FXAA2 = 0,
 	    FXAA3Console = 1,		
@@ -33,7 +30,7 @@ public class AA : MonoBehaviour
 	public float edgeSharpness  = 4.0f;
 		
 	public bool dlaaSharp = false;
-
+        
 	public Shader ssaaShader;
 	private Material ssaa;
 	public Shader dlaaShader;
@@ -83,9 +80,8 @@ public class AA : MonoBehaviour
 		return returnValue;
 	}
 
-	public void Start () 
+	protected override void  Init()
     {
-		fxRes = gameObject.GetComponent<IndieEffects>();
 		materialFXAAPreset2 = new Material (shaderFXAAPreset2);
 		materialFXAAPreset3 = new Material (shaderFXAAPreset3);
 		materialFXAAII = new Material (shaderFXAAII);
@@ -95,73 +91,73 @@ public class AA : MonoBehaviour
 		dlaa = new Material (dlaaShader); 	            
 	}
 	
-	public void Update () 
+	protected override void  UpdateEffect()
     {   
-	    materialFXAAPreset2.mainTexture = fxRes.RT;
-	    materialFXAAPreset3.mainTexture = fxRes.RT;
-	    materialFXAAII.mainTexture = fxRes.RT;
-	    materialFXAAIII.mainTexture = fxRes.RT;
-	    nfaa.mainTexture = fxRes.RT;
-	    ssaa.mainTexture = fxRes.RT;
-	    dlaa.mainTexture = fxRes.RT;
+	    materialFXAAPreset2.mainTexture = fxRes.rt;
+	    materialFXAAPreset3.mainTexture = fxRes.rt;
+	    materialFXAAII.mainTexture = fxRes.rt;
+	    materialFXAAIII.mainTexture = fxRes.rt;
+	    nfaa.mainTexture = fxRes.rt;
+	    ssaa.mainTexture = fxRes.rt;
+	    dlaa.mainTexture = fxRes.rt;
 	}
 
-	public void OnPostRender() 
+    protected override void OnPostRender() 
     {
 
  		// .............................................................................
-		// FXAA antialiasing modes .....................................................
-		
-		if (mode == AAMode.FXAA3Console && (materialFXAAIII != null)) {
+		// FXAA antialiasing modes .....................................................}
+
+		if (mode == AAMode.FXAA3Console && (materialFXAAIII != null)) 
+        {
 			materialFXAAIII.SetFloat("_EdgeThresholdMin", edgeThresholdMin);
 			materialFXAAIII.SetFloat("_EdgeThreshold", edgeThreshold);
 			materialFXAAIII.SetFloat("_EdgeSharpness", edgeSharpness);		
 		
-            IndieEffects.FullScreenQuad(materialFXAAIII);
+            IndieEffectTools.FullScreenQuad(materialFXAAIII);
         }        
 		else if (mode == AAMode.FXAA1PresetB && (materialFXAAPreset3 != null)) {
-            IndieEffects.FullScreenQuad(materialFXAAPreset3);
+            IndieEffectTools.FullScreenQuad(materialFXAAPreset3);
         }
         else if(mode == AAMode.FXAA1PresetA && materialFXAAPreset2 != null) {
-            fxRes.RT.anisoLevel = 4;
-            IndieEffects.FullScreenQuad(materialFXAAPreset2);
-            fxRes.RT.anisoLevel = 0;
+            fxRes.rt.anisoLevel = 4;
+            IndieEffectTools.FullScreenQuad(materialFXAAPreset2);
+            fxRes.rt.anisoLevel = 0;
         }
         else if(mode == AAMode.FXAA2 && materialFXAAII != null) {
-            IndieEffects.FullScreenQuad(materialFXAAII);
+            IndieEffectTools.FullScreenQuad(materialFXAAII);
         }
 		else if (mode == AAMode.SSAA && ssaa != null) {
 
 		// .............................................................................
 		// SSAA antialiasing ...........................................................
 			
-			IndieEffects.FullScreenQuad(ssaa);								
+			IndieEffectTools.FullScreenQuad(ssaa);								
 		}
 		else if (mode == AAMode.DLAA && dlaa != null) {
 
 		// .............................................................................
 		// DLAA antialiasing ...........................................................
 		
-			fxRes.RT.anisoLevel = 0;	
-			var interim = fxRes.RT;
-			IndieEffects.FullScreenQuad(dlaa);			
-			IndieEffects.FullScreenQuad(dlaa);					
+			fxRes.rt.anisoLevel = 0;	
+			IndieEffectTools.FullScreenQuad(dlaa);			
+			IndieEffectTools.FullScreenQuad(dlaa);					
 		}
 		else if (mode == AAMode.NFAA && nfaa != null) {
 
 		// .............................................................................
 		// nfaa antialiasing ..............................................
 			
-			fxRes.RT.anisoLevel = 0;	
+			fxRes.rt.anisoLevel = 0;	
 		
 			nfaa.SetFloat("_OffsetScale", offsetScale);
 			nfaa.SetFloat("_BlurRadius", blurRadius);
 				
-			IndieEffects.FullScreenQuad(nfaa);					
+			IndieEffectTools.FullScreenQuad(nfaa);					
 		}
 		else {
 			// none of the AA is supported, fallback to a simple blit
-			IndieEffects.FullScreenQuad(null);
+			IndieEffectTools.FullScreenQuad(null);
 		}
 	}
 }

@@ -10,7 +10,7 @@
 #pragma strict
  
 //@script RequireComponent (IndieEffects)
-@script AddComponentMenu ("Indie Effects/CameraMotionBlur")
+@script AddComponentMenu ("Indie Effects/JS/CameraMotionBlur")
  
 			var fxRes : IndieEffects;
 			 

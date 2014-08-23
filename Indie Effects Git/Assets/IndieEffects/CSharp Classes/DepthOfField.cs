@@ -1,28 +1,22 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(IndieEffects))]
-[AddComponentMenu("Indie Effects/Depth of Field C#")]
-public class DepthOfField : MonoBehaviour
+[AddComponentMenu("Indie Effects/C#/Depth of Field")]
+public class DepthOfField : IndieEffect
 {
-    public IndieEffects fxRes;
-
-    public Shader shader;
-    private Material DOFMat;
-    [Range (0,10)]
+    [Range(0, 10)]
+    [Tooltip("TODO : Tooltip")]
     public float FStop;
-    [Range (0,5)]
+
+    [Range(0, 5)]
+    [Tooltip("TODO : Tooltip")]
     public float BlurAmount;
 
-    public void Start () {
-	    fxRes = GetComponent<IndieEffects>();
-	    DOFMat = new Material(shader);
-    }
+    protected override void OnPostRender() 
+    {
+        effectMat.SetTexture("_Depth", fxRes.DNBuffer);
+        effectMat.SetFloat("_FStop", FStop * 10);
+        effectMat.SetFloat("_Amount", BlurAmount);
 
-    public void OnPostRender () {
-	    DOFMat.SetTexture("_MainTex",fxRes.RT);
-	    DOFMat.SetTexture("_Depth",fxRes.DNBuffer);
-	    DOFMat.SetFloat ("_FStop", FStop*10);
-	    DOFMat.SetFloat ("_Amount", BlurAmount);
-	    IndieEffects.FullScreenQuad(DOFMat);
+        base.OnPostRender();
     }
 }

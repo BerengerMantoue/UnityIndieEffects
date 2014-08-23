@@ -3,7 +3,7 @@ import IndieEffects;
 
 var fxRes : IndieEffects;
 @script RequireComponent(Camera);
-@script AddComponentMenu("Indie Effects/Vignette");
+@script AddComponentMenu ("Indie Effects/JS/Vignette");
 
 private var sampleMat : Material;
 var shader : Shader;

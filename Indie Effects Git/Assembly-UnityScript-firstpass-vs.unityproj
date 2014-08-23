@@ -76,7 +76,9 @@
      <None Include="Assets\IndieEffects\ShaderDir\DNBased\Bunell Disk SSAO.shader" />
      <None Include="Assets\IndieEffects\ShaderDir\DNBased\DOFShader.shader" />
      <None Include="Assets\IndieEffects\ShaderDir\Normal\IndieRadialBlur.shader" />
+     <None Include="Assets\Editor\Doxygen\Resources\BaseDoxyfile.txt" />
      <None Include="Assets\IndieEffects\ShaderDir\Normal\RadialBlurVF.shader" />
+     <None Include="Assets\Editor\Doxygen\ReadMe.txt" />
      <None Include="Assets\IndieEffects\AA Shaders\DLAA.shader" />
      <None Include="Assets\IndieEffects\AA Shaders\NFAA.shader" />
      <None Include="Assets\IndieEffects\ShaderDir\Normal\ImageBloom.shader" />

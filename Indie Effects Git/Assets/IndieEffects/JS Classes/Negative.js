@@ -7,7 +7,7 @@ When i was playing around with the indie effects motion blur shader, i got
 this effect by accident. enjoy!
 */
 @script RequireComponent (IndieEffects)
-@script AddComponentMenu ("Indie Effects/Negative")
+@script AddComponentMenu ("Indie Effects/JS/Negative")
 var fxRes : IndieEffects;
 
 private var ThermoMat : Material;

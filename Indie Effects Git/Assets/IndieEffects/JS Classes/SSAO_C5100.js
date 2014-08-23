@@ -8,7 +8,7 @@
 // Big thanks to Arkano22 for creating this EPIC technique, to FuzzyQuills for IndieEffects, to 0tacun for helping in position reconstruction, 
 // to #Include Graphics and bwhiting from GameDev forum for helping me about self occlusion problem.
 @script RequireComponent(IndieEffects)
-@script AddComponentMenu("Indie Effects/Screen Space Ambient Occlusion")
+@script AddComponentMenu ("Indie Effects/JS/Screen Space Ambient Occlusion")
 import IndieEffects;
 var fxRes : IndieEffects;
 

@@ -6,26 +6,9 @@
 When i was playing around with the indie effects motion blur shader, i got 
 this effect by accident. enjoy!
 */
-[RequireComponent(typeof(IndieEffects))]
-[AddComponentMenu("Indie Effects/Negative C#")]
-public class Negative : MonoBehaviour
+[AddComponentMenu("Indie Effects/C#/Negative")]
+public class Negative : IndieEffect
 {
-    public IndieEffects fxRes;
-
-    private Material ThermoMat;
-    public Shader shader;
+    [Tooltip("TODO : Tooltip")]
     public float noise;
-
-    public void Start () {
-	    fxRes = GetComponent<IndieEffects>();
-	    ThermoMat = new Material(shader);
-    }
-
-    public void Update () {
-	    ThermoMat.SetTexture("_MainTex", fxRes.RT);
-    }
-
-    public void OnPostRender () {
-	    IndieEffects.FullScreenQuad(ThermoMat);
-    }
 }

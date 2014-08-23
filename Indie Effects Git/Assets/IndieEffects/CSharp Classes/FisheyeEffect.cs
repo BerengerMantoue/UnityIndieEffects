@@ -7,33 +7,29 @@ If you want me to attempt to convert a unity pro image effect, consult the manua
 forum link and email address.
 */
 
-[RequireComponent(typeof(Camera))]
-[AddComponentMenu("Indie Effects/Fisheye C#")]
-public class FisheyeEffect : MonoBehaviour
+[AddComponentMenu("Indie Effects/C#/Fisheye")]
+public class FisheyeEffect : IndieEffect
 {    
-    public IndieEffects fxRes;
+    [Tooltip("TODO : Tooltip")]
     public float strengthX = 0.2f;
+
+    [Tooltip("TODO : Tooltip")]
     public float strengthY = 0.2f;
-    public Shader fishEyeShader;
+
+    [Tooltip("TODO : Tooltip")]
     private Texture2D tex;
-    private Material fisheyeMaterial;	
-	
-    public void Start (){	
-	    fxRes = GetComponent<IndieEffects>();
-	    fisheyeMaterial = new Material(fishEyeShader);		
-    }
-	
-    public void Update () {
-	    fisheyeMaterial.mainTexture = fxRes.RT;
-    }
 
-    public void OnPostRender() 
+    private const float ONE_OVER_BASE_SIZE = 80.0f / 512.0f;
+    
+    protected override void OnPostRender() 
     {				
-	    float oneOverBaseSize = 80.0f / 512.0f;
+        float ar = Screen.width / Screen.height;
 
-        float ar = (Screen.width * 1.0f) / (Screen.height * 1.0f);
-	
-	    fisheyeMaterial.SetVector ("intensity", new Vector4 (strengthX * ar * oneOverBaseSize, strengthY * oneOverBaseSize, strengthX * ar * oneOverBaseSize, strengthY * oneOverBaseSize));
-	    IndieEffects.FullScreenQuad(fisheyeMaterial);
+        effectMat.SetVector("intensity", new Vector4(   strengthX * ar * ONE_OVER_BASE_SIZE,
+                                                        strengthY * ONE_OVER_BASE_SIZE,
+                                                        strengthX * ar * ONE_OVER_BASE_SIZE,
+                                                        strengthY * ONE_OVER_BASE_SIZE));
+
+        base.OnPostRender();
     }
 }

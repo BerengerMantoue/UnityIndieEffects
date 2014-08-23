@@ -2,7 +2,7 @@
 import IndieEffects;
 
 @script RequireComponent (IndieEffects)
-@script AddComponentMenu ("Indie Effects/Motion Blur")
+@script AddComponentMenu ("Indie Effects/JS/Motion Blur")
 var fxRes : IndieEffects;
 
 private var blurMat : Material;

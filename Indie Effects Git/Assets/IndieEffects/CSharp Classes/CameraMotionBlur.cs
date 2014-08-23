@@ -10,41 +10,35 @@ using UnityEngine;
 	~0tacun
 */
  
-//[RequireComponent(typeof(IndieEffects))]
-[AddComponentMenu("Indie Effects/CameraMotionBlur C#")]
-public class CameraMotionBlur : MonoBehaviour
-{ 
-    public IndieEffects fxRes;
-			 
-    private Material blurMat;
-    public Shader shader;
+[AddComponentMenu("Indie Effects/C#/CameraMotionBlur")]
+public class CameraMotionBlur : IndieEffect
+{
+    [Tooltip("TODO : Tooltip")]
     public float intensity = 0.05f;
-			 
+
+    // Give the VPM matrix of the previous frame to the shader
     private Matrix4x4 previousViewProjectionMatrix;
  
-    public void Start () {
-	    fxRes = GetComponent<IndieEffects>();
-	    blurMat = new Material(shader);
-	
+    protected override void  Init()
+    {
 	    previousViewProjectionMatrix = fxRes.DepthCam.camera.projectionMatrix * fxRes.DepthCam.camera.worldToCameraMatrix;
-   
     }
 
  
-    public void OnPostRender () 
+    protected override void OnPostRender () 
     { 
 	    Matrix4x4 viewProjection = fxRes.DepthCam.camera.projectionMatrix * fxRes.DepthCam.camera.worldToCameraMatrix;
         Matrix4x4 inverseViewProjection = viewProjection.inverse; 
  
-	    blurMat.SetMatrix("_inverseViewProjectionMatrix" , inverseViewProjection);
-	    blurMat.SetMatrix("_previousViewProjectionMatrix" , previousViewProjectionMatrix);
-	   
-	    blurMat.SetFloat("_intensity", intensity);
-   
-	    blurMat.SetTexture("_MainTex", fxRes.RT);
-	    blurMat.SetTexture("_CameraDepthTexture", fxRes.DNBuffer);  
-      
-	    IndieEffects.FullScreenQuad(blurMat);
+	    effectMat.SetMatrix("_inverseViewProjectionMatrix" , inverseViewProjection);
+        effectMat.SetMatrix("_previousViewProjectionMatrix", previousViewProjectionMatrix);
+
+        effectMat.SetFloat("_intensity", intensity);
+
+        effectMat.SetTexture("_MainTex", fxRes.rt);
+        effectMat.SetTexture("_CameraDepthTexture", fxRes.DNBuffer);
+
+        base.OnPostRender();
    
 	    previousViewProjectionMatrix = viewProjection;
     }

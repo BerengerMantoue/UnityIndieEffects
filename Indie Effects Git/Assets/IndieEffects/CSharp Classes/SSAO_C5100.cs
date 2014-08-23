@@ -7,53 +7,50 @@
 // If you use it in your games, please say my name in credits ;)
 // Big thanks to Arkano22 for creating this EPIC technique, to FuzzyQuills for IndieEffects, to 0tacun for helping in position reconstruction, 
 // to #Include Graphics and bwhiting from GameDev forum for helping me about self occlusion problem.
-[RequireComponent(typeof(IndieEffects))]
-[AddComponentMenu("Indie Effects/Screen Space Ambient Occlusion C#")]
-public class SSAO_C5100 : MonoBehaviour
+[AddComponentMenu("Indie Effects/C#/Screen Space Ambient Occlusion")]
+public class SSAO_C5100 : IndieEffect
 {
-    public IndieEffects fxRes;
-
+    [Tooltip("TODO : Tooltip")]
     public Texture2D randTex;
+
+    [Tooltip("TODO : Tooltip")]
     public float bias = 1;
+
+    [Tooltip("TODO : Tooltip")]
     public float samplingRadius= 1.0f;
+
+    [Tooltip("TODO : Tooltip")]
     public float scale= 0.8f;
-    [Range(2,8)]
+
+    [Range(2, 8)]
+    [Tooltip("TODO : Tooltip")]
     public int iterations = 3;
-    [Range(0.7f, 0.9f)] 
+
+    [Range(0.7f, 0.9f)]
+    [Tooltip("TODO : Tooltip")]
     public float selfOcclusion = 0.8f;
+
+    [Tooltip("TODO : Tooltip")]
     public float strength = 2.0f;
-
-    public Material materialAO;
-    public Shader shaderAO;
-
-    public void Start () 
+    
+    protected override void OnPostRender()
     {
-	    fxRes = GetComponent<IndieEffects>();
-	    materialAO = new Material (shaderAO);
-    }
+        base.OnPostRender();
 
+        //	depthTex = _NormalsDepth.DepthTex;
+        effectMat.SetTexture("_DepthNormalTex", fxRes.DNBuffer);
+        effectMat.SetTexture("_noiseTex", randTex);
+        effectMat.SetFloat("_Bias", -bias);
+        effectMat.SetFloat("_scale", scale);
+        effectMat.SetFloat("_sampleRad", samplingRadius * 100);
+        effectMat.SetInt("_iterations", iterations);
+        effectMat.SetFloat("_selfOcclusion", selfOcclusion);
+        effectMat.SetFloat("_strength", strength);
 
-    public void Update () 
-    {
-    //	depthTex = _NormalsDepth.DepthTex;
-	    materialAO.SetTexture("_MainTex", fxRes.RT);
-	    materialAO.SetTexture("_DepthNormalTex", fxRes.DNBuffer);
-	    materialAO.SetTexture("_noiseTex", randTex);
-	    materialAO.SetFloat("_Bias", -bias);
-	    materialAO.SetFloat("_scale", scale);
-	    materialAO.SetFloat("_sampleRad", samplingRadius*100);
-	    materialAO.SetInt("_iterations", iterations);
-	    materialAO.SetFloat("_selfOcclusion", selfOcclusion);
-	    materialAO.SetFloat("_strength", strength);
+        Matrix4x4 P = camera.projectionMatrix;
+        Matrix4x4 invP = P.inverse;
+        invP = invP.transpose;
 
-	    Matrix4x4 P = camera.projectionMatrix;
-	    Matrix4x4 invP = P.inverse;
-	    invP = invP.transpose;
-	    materialAO.SetMatrix ("_InvProj", invP); // Set the 4x4 Matrix
-    }
-
-    public void OnPostRender()
-    {
-	    IndieEffects.FullScreenQuad(materialAO);
+        effectMat.SetMatrix("_InvProj", invP); // Set the 4x4 Matrix
     }
 }

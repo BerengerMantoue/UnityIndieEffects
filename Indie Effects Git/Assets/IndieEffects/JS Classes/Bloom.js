@@ -1,7 +1,7 @@
 ﻿#pragma strict
  
 @script RequireComponent (IndieEffects)
-@script AddComponentMenu ("Indie Effects/Image Bloom")
+@script AddComponentMenu ("Indie Effects/JS/Image Bloom")
 import IndieEffects;
 var fxRes : IndieEffects;
 

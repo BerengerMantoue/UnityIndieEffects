@@ -1,29 +1,31 @@
 ﻿using UnityEngine;
  
-[RequireComponent(typeof(IndieEffects))]
-[AddComponentMenu("Indie Effects/Image Bloom C#")]
-public class Bloom : MonoBehaviour
+[RequireComponent(typeof(IndieEffectsManager))]
+[AddComponentMenu("Indie Effects/C#/Image Bloom")]
+public class Bloom : IndieEffect
 {
-    public IndieEffects fxRes;
-
-    private Material bloomMat;
-    public Shader bloomShader;
+    [Tooltip("TODO : Tooltip")]
     public float threshold;
+
+    [Tooltip("TODO : Tooltip")]
     public float amount;
+
+    [Tooltip("TODO : Tooltip")]
     public Texture2D newTex;
  
-    public void Start () {
-    fxRes = GetComponent<IndieEffects>();
-    newTex = new Texture2D(fxRes.textureSize, fxRes.textureSize, TextureFormat.RGB24, false);
-    newTex.wrapMode = TextureWrapMode.Clamp;
-    bloomMat = new Material(bloomShader);
+    protected override void Init() 
+    {
+        newTex = new Texture2D(fxRes.textureSize, fxRes.textureSize, TextureFormat.RGB24, false);
+        newTex.wrapMode = TextureWrapMode.Clamp;
     }
 
-    public void OnGUI() {
-	    bloomMat.SetFloat("_Threshold", threshold);
-	    bloomMat.SetFloat("_Amount", amount);
-	    bloomMat.SetTexture("_MainTex", fxRes.RT);
-	    bloomMat.SetTexture("_BlurTex", fxRes.RT);
-	    IndieEffects.FullScreenQuad(bloomMat);
+    private void OnGUI() 
+    {
+	    effectMat.SetFloat("_Threshold", threshold);
+	    effectMat.SetFloat("_Amount", amount);
+	    effectMat.SetTexture("_MainTex", fxRes.rt);
+	    effectMat.SetTexture("_BlurTex", fxRes.rt);
+
+        base.OnPostRender();
     }
 }

@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 58bb0391aa022da47999ec5c9f973e2b
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - effectShader: {fileID: 4800000, guid: 339df4742ea2cf64ab691633104ed272, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

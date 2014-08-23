@@ -9,38 +9,34 @@ along with this script.
 http://1337atr.weebly.com
 */
 
-[RequireComponent(typeof(IndieEffects))]
-[AddComponentMenu("Indie Effects/Color Balance C#")]
-public class ColorBalance : MonoBehaviour
+[AddComponentMenu("Indie Effects/C#/Color Balance")]
+public class ColorBalance : IndieEffect
 {
-    public IndieEffects fxRes;
+    [Tooltip("TODO : Tooltip")]
+    public Color Lift = Color.white;
 
-    private Material mat;
-    public Shader shader;
+    [Tooltip("TODO : Tooltip")]
+    public float LiftBright = 1f;
 
-    public Color Lift= new Color(1f, 1f, 1f, 1f);
-    public float LiftBright= 1f;
-    public Color Gamma= new Color(1f, 1f, 1f, 1f);
-    public float GammaBright= 1f;
-    public Color Gain= new Color(1f, 1f, 1f, 1f);
-    public float GainBright= 1f;
+    [Tooltip("TODO : Tooltip")]
+    public Color Gamma = Color.white;
 
-    public void Start () {
-	    fxRes = GetComponent<IndieEffects>();
-	    mat = new Material(shader);
-	    mat.SetColor("_Lift", Lift);
-	    mat.SetFloat("_LiftB", Mathf.Clamp(LiftBright, 0f, 2f));
-	    mat.SetColor("_Gamma", Gamma);
-	    mat.SetFloat("_GammaB", Mathf.Clamp(GammaBright, 0f, 2f));
-	    mat.SetColor("_Gain", Gain);
-	    mat.SetFloat("_GainB", Mathf.Clamp(GainBright, 0f, 2f));
-    }
+    [Tooltip("TODO : Tooltip")]
+    public float GammaBright = 1f;
 
-    public void Update () {
-	    mat.SetTexture("_MainTex", fxRes.RT);
-    }
+    [Tooltip("TODO : Tooltip")]
+    public Color Gain  = Color.white;
 
-    public void OnPostRender () {
-	    IndieEffects.FullScreenQuad(mat);
+    [Tooltip("TODO : Tooltip")]
+    public float GainBright = 1f;
+
+    protected override void  Init()
+    {
+	    effectMat.SetColor("_Lift", Lift);
+	    effectMat.SetFloat("_LiftB", Mathf.Clamp(LiftBright, 0f, 2f));
+	    effectMat.SetColor("_Gamma", Gamma);
+	    effectMat.SetFloat("_GammaB", Mathf.Clamp(GammaBright, 0f, 2f));
+	    effectMat.SetColor("_Gain", Gain);
+	    effectMat.SetFloat("_GainB", Mathf.Clamp(GainBright, 0f, 2f));
     }
 }

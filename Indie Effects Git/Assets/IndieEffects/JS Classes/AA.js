@@ -7,7 +7,7 @@ This is an adaption of Unity Pro's AA Script, done by TheBlur (me)
 
 */
 @script RequireComponent (IndieEffects)
-@script AddComponentMenu ("Indie Effects/Anti-Aliasing")
+@script AddComponentMenu ("Indie Effects/JS/Anti-Aliasing")
 //import IndieEffects;
 var fxRes : IndieEffects;
 

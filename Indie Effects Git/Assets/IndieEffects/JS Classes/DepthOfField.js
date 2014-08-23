@@ -2,7 +2,7 @@
 import IndieEffects;
 
 @script RequireComponent(IndieEffects)
-@script AddComponentMenu("Indie Effects/Depth of Field")
+@script AddComponentMenu ("Indie Effects/JS/Depth of Field")
 var fxRes : IndieEffects;
 
 var shader : Shader;

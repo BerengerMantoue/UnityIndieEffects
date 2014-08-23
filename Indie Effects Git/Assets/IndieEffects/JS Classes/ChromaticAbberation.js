@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 @script RequireComponent(IndieEffects)
-@script AddComponentMenu("Indie Effects/Chromatic Abberation")
+@script AddComponentMenu ("Indie Effects/JS/Chromatic Abberation")
 import IndieEffects;
 
 var fxRes : IndieEffects;

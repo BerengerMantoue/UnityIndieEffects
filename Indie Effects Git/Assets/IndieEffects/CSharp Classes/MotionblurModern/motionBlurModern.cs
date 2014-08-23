@@ -1,38 +1,41 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
-[AddComponentMenu("Indie Effects/Motion Blur C#")]
-public class motionBlurModern : MonoBehaviour
+[AddComponentMenu("Indie Effects/C#/Motion Blur")]
+public class motionBlurModern : IndieEffect
 {
-    public IndieEffects fxRes;
+    // BM : Unused ?
+    //public Shader VectorsShader;
 
-    private Material blurMat;
-    public Shader blurShader;
-    public Shader VectorsShader;
     [Range(0.0f, 0.1f)]
+    [Tooltip("TODO : Tooltip")]
     public float intensity = 0.001f;
-    public Texture2D prevDepth;
 
-    public Matrix4x4 previousViewProjectionMatrix;
+    // BM : Unused ?
+    //public Texture2D prevDepth;
 
-    public void Start () 
+    // Give the VPM matrix of the previous frame to the shader
+    private Matrix4x4 previousViewProjectionMatrix;
+
+    protected override void Init () 
     {
-	    fxRes = GetComponent<IndieEffects>();
-        blurMat = new Material(blurShader);
-        previousViewProjectionMatrix = camera.projectionMatrix * camera.worldToCameraMatrix;
+        previousViewProjectionMatrix = cam.projectionMatrix * cam.worldToCameraMatrix;
     }
-    
-    public void OnPostRender () 
+
+    protected override void OnPostRender() 
     {
-        Matrix4x4 viewProjection = camera.projectionMatrix * camera.worldToCameraMatrix;
+        Matrix4x4 viewProjection = cam.projectionMatrix * cam.worldToCameraMatrix;
 	    //vector map generation
         Matrix4x4 inverseViewProjection = viewProjection.inverse;
-        blurMat.SetMatrix("_inverseViewProjectionMatrix" , inverseViewProjection);
-        blurMat.SetMatrix("_previousViewProjectionMatrix" , previousViewProjectionMatrix);
-        blurMat.SetFloat("_intensity", intensity);
-        blurMat.SetTexture("_MainTex", fxRes.RT);
-        blurMat.SetTexture("_Depth", fxRes.DNBuffer);
-        IndieEffects.FullScreenQuad(blurMat);
+
+        effectMat.SetMatrix("_inverseViewProjectionMatrix" , inverseViewProjection);
+        effectMat.SetMatrix("_previousViewProjectionMatrix" , previousViewProjectionMatrix);
+
+        effectMat.SetFloat("_intensity", intensity);
+
+        effectMat.SetTexture("_Depth", fxRes.DNBuffer);
+
+        base.OnPostRender();
+
         previousViewProjectionMatrix = viewProjection;
     }
 }

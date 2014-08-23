@@ -9,7 +9,7 @@ forum link and email address.
 var fxRes : IndieEffects;
 
 @script RequireComponent (Camera)
-@script AddComponentMenu ("Indie Effects/Fisheye")
+@script AddComponentMenu ("Indie Effects/JS/Fisheye")
 
 var strengthX : float = 0.2f;
 var strengthY : float = 0.2f;
